@@ -1,6 +1,6 @@
- #!/usr/bin/python3
+#!/usr/bin/python3
 import random
- number = random.randint(-10000, 10000)
+number = random.randint(-10000, 10000)
  
 last digit = abs(number) % 10
  
@@ -11,4 +11,4 @@ if lastdigit == 0:
 elif lastdigit < 6 and lastdigit != 0:
          print(f"{message} and is less thsn 6 and not 0")
 elif lastdigit > 5:
-         print(f"{message} and is greater than 5)
+         print(f"{message} and is greater than 5")
