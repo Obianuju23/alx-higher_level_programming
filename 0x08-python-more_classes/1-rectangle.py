@@ -13,10 +13,10 @@ class Rectangle:
         Args:
             width(int):The width of the rectangle
             height(int):The height of the rectangle  
-
         Raises:
             TypeError: if width is not an integer
-            ValueError: if width is less than zero"""
+            ValueError: if width is less than zero
+       """
     
         self.width = width
         self.height = height
