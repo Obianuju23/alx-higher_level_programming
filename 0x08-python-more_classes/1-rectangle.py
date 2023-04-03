@@ -8,12 +8,13 @@ class Rectangle:
     equal to each other."""
 
     def __init__(self, width=0, height=0):
+
         """initialising the objects(width and height)of the rectangles class
 
-        Args:
+        Arguments:
             width(int):The width of the rectangle
             height(int):The height of the rectangle  
-        Raises:
+        Exceptions to be raised:
             TypeError: if width is not an integer
             ValueError: if width is less than zero
        """
