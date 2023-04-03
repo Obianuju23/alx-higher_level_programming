@@ -47,15 +47,16 @@ class Rectangle:
         if self.__width == 0 or self.__height == 0:
             return(0)
         return ((self.__width * 2) + (self.__height * 2))
+
     def __str__(self):
-        """This returns informal printable Rectangle representation with 
-        # character"""
+        """This returns informal printable Rectangle representation
+        with # character"""
         if self.__width == 0 or self.__height == 0:
             return ("")
-    Rectangle = []
+    Rectangle = ""
     for column in range(self.__height):
         for row in range(self.__width):
             Rectangle = Rectangle + "#"
         if column != self.__height - 1:
             Rectangle = Rectangle + "\n"
-    return(rectangle)
+    return(Rectangle)
