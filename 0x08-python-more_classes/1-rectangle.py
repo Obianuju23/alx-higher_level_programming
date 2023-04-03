@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Definition of a Rectangle class.
+Definition of a Rectangle class
 """
 
 
@@ -32,7 +32,7 @@ class Rectangle:
         return self.__height
 
     @height.setter
-    def height(self, value)
+    def height(self, value):
         """Sets the height attributes"""
         if not isinstance(value, int):
             raise TypeError("height value must be an integer")
