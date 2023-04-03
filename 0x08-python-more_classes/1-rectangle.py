@@ -7,9 +7,9 @@ class Rectangle:
     A rectangle is a quadrilateral with its parallel sides
     equal to each other."""
 
-
 def __init__(self, width=0, height=0):
     """initialising the objects(width and height)of the rectangles class
+
     Raises:
         TypeError: if width is not an integer
         ValueError: if width is less than zero
@@ -44,7 +44,7 @@ def height(self):
 @height.setter
 def height(self, value):
     if not isinstance(value, int):
-        raise TypeError("height must be an integer")
+        raise TypeError("height value must be an integer")
     if value < 0:
-        raise ValueError("height must be >= 0")
+        raise ValueError("height value must be >= 0")
     self.__height = value
