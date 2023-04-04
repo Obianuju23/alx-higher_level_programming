@@ -45,7 +45,7 @@ class Rectangle:
     def perimeter(self):
         """returns the attribute(perimeter) of the rectangle"""
         if self.__width == 0 or self.__height == 0:
-            return(0)
+            return 0
         return ((self.__width * 2) + (self.__height * 2))
 
     def __str__(self):
@@ -53,10 +53,6 @@ class Rectangle:
         with # character"""
         if self.__width == 0 or self.__height == 0:
             return ("")
-        Rectangle = ""
-        for column in range(self.__height):
-            for row in range(self.__width):
-            Rectangle += "#"
-            if column < self.__height - 1:
-            Rectangle += "\n"
-        return(Rectangle)
+            Rectangle += "\n".join("#" * self.__width 
+                                   for j in range(self.__height))
+        return Rectangle
