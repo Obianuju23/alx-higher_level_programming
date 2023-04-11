@@ -1,4 +1,4 @@
-# 1-my_list.txt
+#!/usr/bin/python3
 
 =======================
 How to Use 1-my_list.py
@@ -167,3 +167,12 @@ will be raised.
     >>> my_list.print_sorted()
     Traceback (most recent call last):
     TypeError: unorderable types: str() < int()
+
+::
+
+     >>> issubclass(MyList, list)
+    True
+    >>> isinstance(MyList, object)
+    True
+    >>> type(MyList())
+    <class '1-my_list.MyList'>
