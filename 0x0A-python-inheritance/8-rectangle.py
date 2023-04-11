@@ -11,7 +11,7 @@ class Rectangle(BaseGeometry):
         """Instantiation of the rectangle with the objects"""
 
         """encapsulates width and height and ensure that they are private"""
-        super().integer_validator("width", width)
+        self.integer_validator("width", width)
         self.__width = width
-        super().integer_validator("height", height)
+        self.integer_validator("height", height)
         self.__height = height
