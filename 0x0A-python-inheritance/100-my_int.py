@@ -9,8 +9,8 @@ class Myint(int):
    
     def __eq__(self, value):
         """inverts the behavior of the == and != operators"""
-        return int(self) != int(value)
+        return int(self) != value
 
     def __ne__(self, value):
         """inverts the behavior of the == and != operators"""
-        return int(self) == int(value)
+        return int(self) == value
