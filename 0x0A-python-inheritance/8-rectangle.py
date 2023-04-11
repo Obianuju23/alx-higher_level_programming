@@ -8,7 +8,7 @@ class BaseGeometry:
     """An empty class BaseGeometry"""
 
 
-class Rectangle(BaseGeometry)
+class Rectangle(BaseGeometry):
     """Defines a subclass of a superclass BaseGeometry"""
 
     def __init__(self, width, height):
