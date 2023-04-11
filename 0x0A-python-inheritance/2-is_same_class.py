@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Defines function that checks for same class objects."""
 
 def is_same_class(obj, a_class):
     """This protype returns True if the object given is an instance of the
