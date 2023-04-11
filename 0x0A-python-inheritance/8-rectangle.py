@@ -1,20 +1,23 @@
 #!/usr/bin/python3
 """
-This function defines class Rectangle, inherited from BaseGeometry
+this is the `8-rectangle' module
+This module has just two classes
+BaseGeometry() and Rectangle which is a sub
+class of BaseGeometry
 """
 
 
-BaseGeometry = __import__('7-BaseGeometry').BaseGeometry
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
+"""
+imports the super class
+"""
 
 
 class Rectangle(BaseGeometry):
-    """Defines a subclass of a superclass BaseGeometry"""
-
+    """defines a class Rectangle which is a subclass of BaseGeometry"""
     def __init__(self, width, height):
-        """Instantiation of the rectangle with the objects"""
-
-        """encapsulates width and height and ensure that they are private"""
-        self.integer_validator("width", width)
+        """validates and initializes width and height"""
+        super().integer_validator("width", width)
+        super().integer_validator("height", height)
         self.__width = width
-        self.integer_validator("height", height)
         self.__height = height
