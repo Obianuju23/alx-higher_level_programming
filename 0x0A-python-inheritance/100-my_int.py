@@ -4,13 +4,13 @@ This is a subclass Myint that inherited from parent class int
 """
 
 
-class Myint(int):
-    """defines a subclass Myint from a superclass int"""
+class MyInt(int):
+    """Invert int operators == and !=."""
 
-    def __eq__(self, value):
-        """inverts the behavior of the == and != operators"""
-        return int(self) != value
+    def __eq__(self, other):
+        """Override == opeartor with != behavior."""
+        return self.real != other
 
-    def __ne__(self, value):
-        """inverts the behavior of the == and != operators"""
-        return int(self) == value
+    def __ne__(self, other):
+        """Override != operator with == behavior."""
+        return self.real == other
