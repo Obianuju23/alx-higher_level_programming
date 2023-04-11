@@ -6,8 +6,8 @@ def is_same_class(obj, a_class):
     """
 
     """checking if object is exactly same as the specified class"""
- 
+
     if type(obj) == a_class:
-         return True
+        return True
     else:
-         return False
+        return False
