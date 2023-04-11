@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """This function defines class Rectangle, inherited from BaseGeometry"""
 BaseGeometry = __import__('7-BaseGeometry').BaseGeometry
-"""
-imports the super class
-"""
+"""imports the super class"""
 
 
 class Rectangle(BaseGeometry):
