@@ -8,6 +8,7 @@ This program contains the print_sorted public instance method
 
 
 class MyList(list):
+    """Defines subclass MyList of a super class list"""
 
     def __init__(self):
         """initializing MyList object"""
