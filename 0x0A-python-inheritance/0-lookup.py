@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Contains the lookup method
+This program contains the lookup function
 """
 
 
