@@ -8,4 +8,5 @@ def read_file(filename=""):
     """Reads and prints the UTF8 text file content to stdout"""
 
     with open(filename, "r", encoding="utf-8") as f:
-        print(f.read(), end="")
+        read_data = f.read()
+        print(read_data(), end="")
