@@ -6,6 +6,7 @@ this module adds and saves all arguments to a python list
 from sys import argv
 """imports the module needed to get arguments"""
 
+if __name__ == "__main__":
 
 save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 """imports the function save_to_json_file from task 5"""
@@ -17,7 +18,7 @@ filename = "add_item.json"
 
 try:
     obj = load_from_json_file(filename)
-except Exception:
+except FileNotFoundError:
     obj = []
 
 save_to_json_file(obj + argv[1:], filename)
