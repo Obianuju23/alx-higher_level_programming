@@ -1,4 +1,4 @@
-#!/usr/bin/pythons
+#!/usr/bin/python3
 """
 This module JSON returns string representation from data hierarchies
 """
