@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+This module defines a Pascal's Triangle function with size n.
+"""
 
 
 def pascal_triangle(n):
