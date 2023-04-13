@@ -4,8 +4,8 @@ import sys
 
 def print_info():
     print('File size: {:d}'.format(file_size))
-
-    file_size = 0
+    
+    size = 0
     for scode, code_times in sorted(status_codes.items()):
         if code_times > 0:
             print('{}: {:d}'.format(scode, code_times))
