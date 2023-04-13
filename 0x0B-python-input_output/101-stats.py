@@ -8,6 +8,7 @@ prints the following statistics:
     - Count of read status codes up to that point.
 """
 
+
 def print_info():
     print('File size: {:d}'.format(file_size))
     
