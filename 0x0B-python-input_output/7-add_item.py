@@ -8,11 +8,11 @@ from sys import argv
 
 if __name__ == "__main__":
 
-save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
-"""imports the function save_to_json_file from task 5"""
-
-load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
-"""imports the function load_from_json_file from task 6"""
+    save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+    """imports the function save_to_json_file from task 5"""
+    load_from_json_file = \
+        __import__('6-load_from_json_file').load_from_json_file
+    """imports the function load_from_json_file from task 6"""
 
 filename = "add_item.json"
 
