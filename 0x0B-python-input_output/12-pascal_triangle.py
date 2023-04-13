@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def pascal_triangle(n):
     """
     This method represents a Paschal Triangle that with size n
