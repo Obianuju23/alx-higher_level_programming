@@ -4,19 +4,19 @@ This class represents the base of all other classes in this project
 """
 
 
-import json 
+import json
 import csv
- 
+
 
 class Base:
     """This defines a class named Base"""
 
-    __nb_objects = 0   
-        """This is a private class attribute"""
+    __nb_objects = 0
+    """This is a private class attribute"""
 
     def __init__(self, id=None):
-        """initialising the arg id"""
-        
+        """initialising thepublic attribute id"""
+
         if id is not None:
             self.id = id
         else:
