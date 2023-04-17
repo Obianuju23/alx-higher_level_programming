@@ -77,7 +77,7 @@ class Rectangle(Base):
 
     def area(self):
         """This defines and returns public method area"""
-        return = self.__width * self__height
+        return = self.width * self.height
 
     def display(self):
         """Defines display public method&prints string representation"""
