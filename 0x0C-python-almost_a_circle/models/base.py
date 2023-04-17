@@ -63,8 +63,8 @@ class Base:
         """This class method returns a list of instances"""
         filename = cls.__name__ + ".json"
         try:
-            with open(filename, "r") as myFile:
-                string = myFile.read()
+            with open(filename, "r") as f:
+                string = f.read()
         except FileNotFoundError:
             return []
 
@@ -73,16 +73,16 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """serialize to CSV"""
+        """serialize in CSV definition"""
         filename = cls.__name__+".csv"
         if list_objs is None:
             list_objs = []
-        with open(filename, "w", newline="") as myFile:
+        with open(filename, "w", newline="") as f:
             for obj in list_objs:
                 if cls.__name__ == "Rectangle":
-                    csv.writer(myFile).writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                    csv.writer(f).writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
                 elif cls.__name__ == "Square":
-                    csv.writer(myFile).writerow([obj.id, obj.size, obj.x, obj.y])
+                    csv.writer(f).writerow([obj.id, obj.size, obj.x, obj.y])
 
     @classmethod
     def load_from_file_csv(cls):
@@ -90,8 +90,8 @@ class Base:
         instances = []
         filename = cls.__name__ + ".csv"
 
-        with open(filename, "r", newline="") as myFile:
-            reader = csv.reader(myFile)
+        with open(filename, "r", newline="") as f:
+        reader = csv.reader(f)
             for row in reader:
                 if cls.__name__ == "Rectangle":
                     instance = {"id": int(row[0]),
