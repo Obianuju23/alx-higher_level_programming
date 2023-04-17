@@ -26,7 +26,7 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """returns serialised list_dictionaries into a JSON string """
-        if list_dictionaries == None or list_dictionaries == []:
+        if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         else:
             return json.dumps(list_dictionaries)
@@ -36,19 +36,20 @@ class Base:
         """Deserialises JSON string of list_objs to a file"""
 
         filename = cls.__ name__ + ".json"
-        if list_objs == None:
+        if list_objs is None:
             list_objs = []
-         with open(filename, "w", encoding="utf-8") as f:
-            f.write(cls.to_json_string([obj.to_dictionary()
-                         for obj in list_objs]))
-    @staticmethod:
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(cls.to_json_string([obj.to_dictionary))
+                    for obj in list_objs]))
+
+    @staticmethod
     def from_json_string(json_string):
         """returns the list of JSON string representation"""
-        if json_string == None:
+        if json_string is None:
             return "[]"
         return json.loads(json_string)
 
-    @classmethod:
+    @classmethod
     def create(cls, **dictionary):
         """The module returns an instance with all attribute already set"""
         if cls.__name__ == "Square":
@@ -74,13 +75,14 @@ class Base:
     @classmethod
     def save_to_file_csv(cls, list_objs):
         """serialize in CSV definition"""
-        filename = cls.__name__+".csv"
+        filename = cls.__name__ +".csv"
         if list_objs is None:
             list_objs = []
         with open(filename, "w", newline="") as f:
             for obj in list_objs:
                 if cls.__name__ == "Rectangle":
-                    csv.writer(f).writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                    csv.writer(f).writerow\
+               ([obj.id, obj.width, obj.height, obj.x, obj.y])
                 elif cls.__name__ == "Square":
                     csv.writer(f).writerow([obj.id, obj.size, obj.x, obj.y])
 
@@ -89,6 +91,7 @@ class Base:
         """deserialize from csv"""
         instances = []
         filename = cls.__name__ + ".csv"
+
 
         with open(filename, "r", newline="") as f:
         reader = csv.reader(f)
