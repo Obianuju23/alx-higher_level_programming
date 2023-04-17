@@ -55,10 +55,7 @@ class Rectangle(Base):
     @x.setter
     def x(self, value):
         """The value of x is set at this point"""
-        if type(value) != int:
-            raise TypeError("x must be an integer")
-        if value < 0:
-            raise ValueError("x must be >= 0")
+        self.validate_integer("x", value)
         self.__x = value
 
     @property
@@ -69,11 +66,17 @@ class Rectangle(Base):
     @y.setter
     def y(self, value):
         """The value of x is set at this point"""
-        if type(value) != int:
-            raise TypeError("y must be an integer")
-        if value < 0:
-            raise ValueError("y must be >= 0")
+        self.validate_integer("y", value)
         self.__y = value
+
+     def validate_integer(self, name, value, eq=True):
+        '''Method for validating the value.'''
+        if type(value) != int:
+            raise TypeError("{} must be an integer".format(name))
+        if eq and value < 0:
+            raise ValueError("{} must be >= 0".format(name))
+        elif not eq and value <= 0:
+            raise ValueError("{} must be > 0".format(name))
 
     def area(self):
         """This defines and returns public method area"""
@@ -81,10 +84,10 @@ class Rectangle(Base):
 
     def display(self):
         """Defines display public method&prints string representation"""
-        for a in range(self.y):
-            print()
-        for a in range(self.height):
-            print(' ' * self.x + '#' * self.width)
+        a = '\n' * self.y + \
+            (' ' * self.x + '#' * self.width + '\n') * self.height
+        print(a, end='')
+
 
     def __str__(self):
          """returns a format of rectanlge, id x, y and width, height"""
