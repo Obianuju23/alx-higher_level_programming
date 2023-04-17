@@ -1,23 +1,34 @@
 #!/usr/bin/python3
 """
-this is the Unittest for the class Base
+Base class Unittest
 """
-
+import pep8
 import csv
 import os
 import unittest
 import json
-from models.base import base
-from models.rectangle import rectangle
-from models.square import square
+from models import base
+from models import rectangle
+from models import square
 Base = base.Base
 Rectangle = rectangle.Rectangle
 Square = square.Square
-"""imports needed for the tests"""
+"""importing necessary modules needed for the tests"""
+
+
+class Testpep8(unittest.TestCase):
+    """tests pep8"""
+    def test_Base_pep8(self):
+        """pep8 test"""
+        style = pep8.StyleGuide(quiet=False)
+        file = ["models/base.py", "tests/test_models/test_base.py"]
+        err = 0
+        err += style.check_files(file).total_errors
+        self.assertEqual(err, 0, "Need to fix Pep8")
 
 
 class TestBase(unittest.TestCase):
-    """testing for the Base Class"""
+    """tests for the Base Class"""
 
     def setUp(self):
         pass
@@ -29,18 +40,20 @@ class TestBase(unittest.TestCase):
             pass
 
     def test_id(self):
-        self.assertTrue(Base(63), self.id == 63)
-        self.assertTrue(Base(-11), self.id == -11)
-        self.assertTrue(Base(632), self.id == 632)
+        """test of the id"""
+        self.assertTrue(Base(23), self.id == 23)
+        self.assertTrue(Base(-29), self.id == -29)
+        self.assertTrue(Base(752), self.id == 752)
         self.assertTrue(Base(0), self.id == 0)
 
     def test_toomany_arguments(self):
-        """Too many arguments test"""
+        """test for too many arguments"""
         with self.assertRaises(TypeError):
-            Base(5, 8)
-            Base(4, 9, 52)
+            Base(3, 5)
+            Base(4, 6, 29)
 
     def test_increment_id(self):
+        """test if the id increments"""
         self.assertTrue(Base(), self.id == 1)
         self.assertTrue(Base(), self.id == 2)
         self.assertTrue(Base(), self.id == 3)
@@ -56,13 +69,14 @@ class TestBase(unittest.TestCase):
         self.assertEqual(type(Base(4)), Base)
 
     def test_to_json_string(self):
-        dict1 = {"id": 4, "width": 7, "height": 9, "x": 1, "y": 3}
-        dict2 = {"id": 1, "width": 7, "height": 8, "x": 2, "y": 1}
+        """testing for json conversion to string"""
+        dict1 = {"id": 5, "width": 3, "height": 5, "x": 1, "y": 3}
+        dict2 = {"id": 2, "width": 3, "height": 6, "x": 2, "y": 1}
         rdstr = Base.to_json_string([dict1, dict2])
         self.assertTrue(type(rdstr) == str)
         self.assertTrue(rdstr,
-                        [{"id": 4, "width": 7, "height": 9, "x": 1, "y": 3},
-                         {"id": 1, "width": 7, "height": 8, "x": 2, "y": 1}])
+                        [{"id": 5, "width": 3, "height": 5, "x": 1, "y": 3},
+                         {"id": 2, "width": 3, "height": 6, "x": 2, "y": 1}])
         self.assertTrue(type(dict1) == dict)
         dict3 = None
         rdstr1 = Base.to_json_string([dict3])
@@ -85,7 +99,7 @@ class TestBase(unittest.TestCase):
                              myFile.read())
 
     def test_save_to_file2(self):
-        """test the save_to_file with none and empty"""
+        """test the save_to_file with none and empty files"""
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as myFile:
             self.assertTrue('[]', myFile.read())
@@ -96,20 +110,20 @@ class TestBase(unittest.TestCase):
 
     def test_from_json_string(self):
         """Test for the from_json_string"""
-        jstr = '[{"id": 4, "width": 7, "height": 9, "x": 1, "y": 3},\
-                 {"id": 1, "width": 7, "height": 8, "x": 2, "y": 1}]'
+        jstr = '[{"id": 5, "width": 3, "height": 5, "x": 1, "y": 3},\
+                 {"id": 2, "width": 3, "height": 6, "x": 2, "y": 1}]'
         str1 = Base.from_json_string(jstr)
         self.assertEqual(str1,
-                         [{"id": 4, "width": 7, "height": 9, "x": 1, "y": 3},
-                          {"id": 1, "width": 7, "height": 8, "x": 2, "y": 1}])
+                         [{"id": 5, "width": 3, "height": 5, "x": 1, "y": 3},
+                          {"id": 2, "width": 3, "height": 6, "x": 2, "y": 1}])
         self.assertEqual(str1[0],
-                         {"id": 4, "width": 7, "height": 9, "x": 1, "y": 3})
+                         {"id": 5, "width": 3, "height": 5, "x": 1, "y": 3})
         self.assertTrue(type(jstr) == str)
         self.assertTrue(type(str1) == list)
         self.assertTrue(type(str1[0]) == dict)
 
     def test_from_json_string2(self):
-        """test the from_json_string with None and empty"""
+        """testing from_json_string with None and empty files"""
         jstr1 = None
         str2 = Base.from_json_string(jstr1)
         self.assertEqual(str2, [])
@@ -120,7 +134,7 @@ class TestBase(unittest.TestCase):
         self.assertTrue(type(str3) == list)
 
     def test_create(self):
-        """test the create function"""
+        """test for create function"""
         rec = Rectangle(3, 5, 1)
         R1 = rec.to_dictionary()
         r2 = Rectangle.create(**R1)
@@ -129,7 +143,7 @@ class TestBase(unittest.TestCase):
         self.assertNotEqual(rec, r2)
 
     def test_load_from_file(self):
-        """test the load from file"""
+        """testing load from file"""
         s1 = Square(5)
         s2 = Square(7, 9, 1)
         list_squares_input = [s1, s2]
@@ -143,7 +157,7 @@ class TestBase(unittest.TestCase):
                 self.assertEqual(str(square), "[Square] (6) 9/1 - 7")
 
     def test_load_from_file2(self):
-        """test for none and empty"""
+        """test for none and empty files"""
         Square.save_to_file(None)
         s4 = Square.load_from_file()
         self.assertEqual(s4, [])
