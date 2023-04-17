@@ -73,3 +73,46 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def area(self):
+        """This defines and returns public method area"""
+        return = self.__width * self__height
+
+    def display(self):
+        """Defines display public method&prints string representation"""
+        for a in range(self.y):
+            print()
+        for a in range(self.height):
+            print(' ' * self.x + '#' * self.width)
+
+    def __str__(self):
+         """returns a format of rectanlge, id x, y and width, height"""
+       return '[{}] ({}) {}/{} - {}/{}'.\
+            format(type(self).__name__, self.id, self.x, self.y, self.width,
+                   self.height)
+
+    def update(self, *args):
+        """Defining a module that assigns an argument to the attributes"""
+        count_args = len(args)
+        if count_args > 0:
+            self.id = args[0]
+        if count_args > 1:
+            self.width = args[1]
+        if count_args > 2:
+            self.height = args[2]
+        if count_args > 3:
+            self.x = args[3]
+        if count_args > 4:
+            self.y = args[4]
+
+    def update(self, *args, **kwargs):
+        """Updating instance attributes using non-keyword & keyword args"""
+        if args:
+            self.__update(*args)
+        elif kwargs:
+            self.__update(**kwargs)
+
+    def to_dictionary(self):
+        '''Returns dictionary that represents each instance attributes"""
+        return {"id": self.id, "width": self.__width, "height": self.__height,
+                "x": self.__x, "y": self.__y}
