@@ -1,73 +1,49 @@
 #!/usr/bin/python3
-"""
-Base class module
-"""
-
-
-import json
+'''Module for Base class.'''
+from json import dumps, loads
 import csv
-"""needed for the csv files"""
 
 
 class Base:
-    """defines the parent or superclass"""
+    '''A representation of the base of our OOP hierarchy.'''
 
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """initialization of  id"""
-        if id is None:
+        '''Constructor.'''
+        if id is not None:
+            self.id = id
+        else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
-        else:
-            self.id = id
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """returns a string representation"""
-
-        m = "[]"
+        '''Jsonifies a dictionary so it's quite rightly and longer.'''
         if list_dictionaries is None or not list_dictionaries:
-            return m
-        return json.dumps(list_dictionaries)
-
-    @classmethod
-    def save_to_file(cls, list_objs):
-        """writes json to file"""
-
-        filename = cls.__name__ + ".json"
-        with open(filename, "w") as f:
-            if list_objs is None:
-                f.write("[]")
-            else:
-                list_dicts = [o.to_dictionary() for o in list_objs]
-                f.write(Base.to_json_string(list_dicts))
+            return "[]"
+        else:
+            return dumps(list_dictionaries)
 
     @staticmethod
     def from_json_string(json_string):
-        """returns the string from JSON"""
-        if json_string is None or json_string = "[]":
+        '''Unjsonifies a dictionary.'''
+        if json_string is None or not json_string:
             return []
-        return json.loads(json_string)
+        return loads(json_string)
 
     @classmethod
-    def create(cls, **dictionary):
-        """returns an instance with all attributes set"""
-        if dictionary and dictionary != {}:
-        if cls.__name__ == "Rectangle":
-            dummy = cls(1, 1)
-        elif cls.__name__ == "Square":
-            dummy = cls(1)
-        else:
-            dummy = cls()
-
-        dummy.update(**dictionary)
-        return dummy
+    def save_to_file(cls, list_objs):
+        '''Saves jsonified object to file.'''
+        if list_objs is not None:
+            list_objs = [o.to_dictionary() for o in list_objs]
+        with open("{}.json".format(cls.__name__), "w", encoding="utf-8") as f:
+            f.write(cls.to_json_string(list_objs))
 
     @classmethod
     def load_from_file(cls):
-        """returns a list of instances"""
-         from os import path
+        '''Loads string from file and unjsonifies.'''
+        from os import path
         file = "{}.json".format(cls.__name__)
         if not path.isfile(file):
             return []
@@ -75,39 +51,52 @@ class Base:
             return [cls.create(**d) for d in cls.from_json_string(f.read())]
 
     @classmethod
+    def create(cls, **dictionary):
+        '''Loads instance from dictionary.'''
+        from models.rectangle import Rectangle
+        from models.square import Square
+        if cls is Rectangle:
+            new = Rectangle(1, 1)
+        elif cls is Square:
+            new = Square(1)
+        else:
+            new = None
+        new.update(**dictionary)
+        return new
+
+    @classmethod
     def save_to_file_csv(cls, list_objs):
-        """serialize to CSV"""
-        filename = cls.__name__+".csv"
-        if list_objs is None:
-            list_objs = []
-        with open(filename, "w", newline="") as f:
-            for obj in list_objs:
-                wr = csv.writer(f)
-                if cls.__name__ == "Rectangle":
-                    wr.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
-                elif cls.__name__ == "Square":
-                    wr.writerow([obj.id, obj.size, obj.x, obj.y])
+        '''Saves object to csv file.'''
+        from models.rectangle import Rectangle
+        from models.square import Square
+        if list_objs is not None:
+            if cls is Rectangle:
+                list_objs = [[o.id, o.width, o.height, o.x, o.y]
+                             for o in list_objs]
+            else:
+                list_objs = [[o.id, o.size, o.x, o.y]
+                             for o in list_objs]
+        with open('{}.csv'.format(cls.__name__), 'w', newline='',
+                  encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerows(list_objs)
 
     @classmethod
     def load_from_file_csv(cls):
-        """deserialize from csv"""
-        instances = []
-        filename = cls.__name__ + ".csv"
-
-        with open(filename, "r", newline="") as f:
+        '''Loads object to csv file.'''
+        from models.rectangle import Rectangle
+        from models.square import Square
+        ret = []
+        with open('{}.csv'.format(cls.__name__), 'r', newline='',
+                  encoding='utf-8') as f:
             reader = csv.reader(f)
             for row in reader:
-                if cls.__name__ == "Rectangle":
-                    instance = {"id": int(row[0]),
-                                "width": int(row[1]),
-                                "height": int(row[2]),
-                                "x": int(row[3]),
-                                "y": int(row[4])}
-                elif cls.__name__ == "Square":
-                    instance = {"id": int(row[0]),
-                                "size": int(row[1]),
-                                "x": int(row[2]),
-                                "y": int(row[3])}
-                diction = cls.create(**instance)
-                instances.append(diction)
-        return instances
+                row = [int(r) for r in row]
+                if cls is Rectangle:
+                    d = {"id": row[0], "width": row[1], "height": row[2],
+                         "x": row[3], "y": row[4]}
+                else:
+                    d = {"id": row[0], "size": row[1],
+                         "x": row[2], "y": row[3]}
+                ret.append(cls.create(**d))
+        return ret
