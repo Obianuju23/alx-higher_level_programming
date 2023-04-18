@@ -22,7 +22,7 @@ class Square(Rectangle):
     @property
     def size(self):
         """This will retrieve the size of the Rectangle"""
-        return self.__width
+        return self.width
 
     @size.setter
     def size(self, value):
@@ -30,19 +30,16 @@ class Square(Rectangle):
         self.width = value
         self.height = value
 
-    def update(self, *args):
-        """Defining a module that assigns an argument to the attributes"""
-        count_args = len(args)
-        if count_args > 0:
-            self.id = args[0]
-        if count_args > 1:
-            self.width = args[1]
-        if count_args > 2:
-            self.height = args[2]
-        if count_args > 3:
-            self.x = args[3]
-        if count_args > 4:
-            self.y = args[4]
+    def __update(self, id=None, size=None, x=None, y=None):
+        """Internal method that updates instance attributes with */**args"""
+        if id is not None:
+            self.id = id
+        if size is not None:
+            self.size = size
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
 
     def update(self, *args, **kwargs):
         """Updating instance attributes using non-keyword & keyword args"""
@@ -53,5 +50,5 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """Returns dictionary representation of a Rectangle attributes"""
-        return {"id": self.id, "width": self.__width, "height": self.__height,
-                "x": self.__x, "y": self.__y}
+        return {"id": self.id, "width": self.width, "height": self.height,
+                "x": self.x, "y": self.y}
