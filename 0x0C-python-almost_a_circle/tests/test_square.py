@@ -19,7 +19,8 @@ class TestSquare(unittest.TestCase):
         style = pep8.StyleGuide(quit=True)
         files = ["models/square.py", "tests/test_models/test_square.py"]
         check = style.check_files(files)
-        self.assertEqual(check.total_errors, 0, "Need to fix Pep8")
+        self.assertEqual(check.total_errors, 0, f"Pep8\
+            errors: {check.total_errors}")
 
     def test_attribute(self):
         """test the attributes of the square"""
