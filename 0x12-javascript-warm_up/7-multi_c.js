@@ -9,5 +9,5 @@ if (!isNaN(parseInt(Arg1))) {
     console.log('C if Fun');
   }
 } else {
-  cosole.log('Missing number of occurrences');
+  console.log('Missing number of occurrences');
 }
