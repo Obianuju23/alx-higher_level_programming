@@ -6,7 +6,7 @@ if (!isNaN(parseInt(Arg1))) {
   const x = parseInt(Arg1);
 
   for (let i = 0; i < x; i++) {
-    console.log('C if Fun');
+    console.log('C is Fun');
   }
 } else {
   console.log('Missing number of occurrences');
