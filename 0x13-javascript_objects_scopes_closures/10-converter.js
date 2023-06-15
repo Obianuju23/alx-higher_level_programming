@@ -1,7 +1,8 @@
 #!/usr/bin/node
 
 exports.converter = function (base) {
-  return function (num) {
+  function convoc (num) {
     return num.tostring(base);
-  };
+  }
+  return (conv);
 };
