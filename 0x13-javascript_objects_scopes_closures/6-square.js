@@ -5,12 +5,12 @@ const Square1 = require('./5-square');
 class Square extends Square1 {
   charPrint (c) {
     if (c === undefined) {
-      c = 'X';
+      this.print();
     } else {
-      let num = 0;
-      while (num < this.width) {
+      let count = 0;
+      while (count < this.width) {
         console.log(c.repeat(this.width));
-        num++;
+        count++;
       }
     }
   }
