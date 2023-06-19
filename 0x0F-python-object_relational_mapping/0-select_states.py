@@ -15,7 +15,7 @@ if _name_ == '_main_':
 
     cursor.execute(query)
     result = cursor.fetchall()
-    for item in result:
+    for result in results:
         print(item)
     cursor.close()
     connect.close()
