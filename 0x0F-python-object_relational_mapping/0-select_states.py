@@ -14,7 +14,7 @@ if __name__ == '__main__':
     query  = "SELECT * FROM states ORDER id ASC;"
 
     cursor.execute(query)
-    result = cursor.fetchall()
+    results = cursor.fetchall()
     for result in results:
         print(result)
     cursor.close()
