@@ -6,16 +6,16 @@ if __name__ == '__main__':
     import MySQLdb
     from sys  import argv as sysarg
 
-    connect = MySQLdb.connect(host="localhost",
+    connector = MySQLdb.connect(host="localhost",
                               port=3306, user=sysarg[1],
                               password=sysarg[2],
                               database=sysarg[3])
-    cursor = connect.cursor()
+    cursor = connector.cursor()
     query  = "SELECT * FROM states ORDER id ASC;"
 
     cursor.execute(query)
     result = cursor.fetchall()
     for result in results:
-        print(item)
+        print(result)
     cursor.close()
     connect.close()
