@@ -1,18 +1,19 @@
 #!/usr/bin/python3
 """A python script to lists  all states from the database"""
 
-if _name_ == '_main_':
+if _name_ == '_main_': 
+    """This means that all the code inside this block will not be executed if imported"""
     import MySQLdb
-    import sys
+    from sys  import argv as sysarg
 
-    connect = MySQLdb.connect(host="localhost", port=3306,\
-                              user=sys.argv[1], password=sys.argv[2],\
-                              database=sys.argv[3])
+    connect = MySQLdb.connect(host="localhost",
+                              port=3306, user=sysargv[1],
+                              password=sysargv[2],
+                              database=sysargv[3])
     cursor = connect.cursor()
-    sql = "SELECT cities.id, cities.name, states.name FROM cities INNER JOIN\
-            states ON cities.state_id = states.id ORDER BY cities.id ASC;"
+    query  = "SELECT * FROM states ORDER id ASC;"
 
-    cursor.execute(sql)
+    cursor.execute(query)
     result = cursor.fetchall()
     for item in result:
         print(item)
