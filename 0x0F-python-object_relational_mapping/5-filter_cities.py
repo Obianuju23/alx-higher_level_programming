@@ -1,4 +1,4 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 """This is a script that imports the system args for command line, Mysqldb
 module, connects to the database and then list out all the cities in the DB
 """
