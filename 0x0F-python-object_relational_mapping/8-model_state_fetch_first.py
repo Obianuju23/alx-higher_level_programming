@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """A script to list the first state in the DB using SQLAlchemy ORM"""
 
-import sys import argv as sysarg
+from sys import argv as sysarg
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
@@ -14,9 +14,9 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    FirstState = session.query(State).order_by(State.id).first()
-    if FirstState is None:
+    First_State = session.query(State).order_by(State.id).first()
+    if First_State is None:
         print("Nothing")
     else:
-        print("{:d}: {:s}".format(FirstState.id, FirstState.name))
+        print("{:d}: {:s}".format(First_State.id, First_State.name))
     session.close()
