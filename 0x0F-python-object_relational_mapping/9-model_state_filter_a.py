@@ -12,9 +12,9 @@ from model_state import Base, State
 
 if __name__ == "__main__":
     """This does not execute if imported"""
+
     engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}"
-                           .format(sysargv[1], sysargv[2], sysargv[3]),
-                           pool_pre_ping=True)
+                           .format(sysargv[1], sysargv[2], sysargv[3]))
     Session = sessionmaker(bind=engine)
     session = Session()
 
