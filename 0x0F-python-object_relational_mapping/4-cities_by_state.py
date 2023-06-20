@@ -1,29 +1,32 @@
 #!/usr/bin/python3
 """
-This is a script that imports the system args for command line, Mysqldb
-module, connects to the database and then list out all the cities in the DB
+A script that lists all cities
+from the database hbtn_0e_4_usa
+Sorted in ascending by cities id
 """
+import MySQLdb
+from sys import argv
 
-    import MySQLdb
-    from sys import argv as sysarg
- 
 
-if __name__ == '__main__':
-   """Do not execute code when imported"""
+if __name__ == "__main__":
+    """all code inside this block wont be
+    executed if imported"""
 
-    connector = MySQLdb.connect(host="localhost", port=3306, user=sysarg[1],
-                              password=sysarg[2], database=sysarg[3])
-
-    cursor = connector.cursor()
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=argv[1],
+                         passwd=argv[2],
+                         database=argv[3])
+    cur = db.cursor()
     query = """SELECT cities.id, cities.name, states.name
                FROM states
                JOIN cities
                WHERE states.id = cities.state_id
                ORDER BY cities.id"""
 
-    cursor.execute(query)
-    results = cursor.fetchall()
-    for result in results:
-        print(result)
-    cursor.close()
-    connector.close()
+    cur.execute(query)
+    for city in cur.fetchall():
+        print(city)
+
+    cur.close()
+    db.close()
