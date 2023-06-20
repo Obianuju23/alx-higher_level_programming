@@ -5,7 +5,7 @@ Usage: ./7-model_state_fetch_all.py <mysql username> /
                                     <mysql password> /
                                     <database name>
 """
-import sys import argv as sysarg
+from import sys import argv as sysarg
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
