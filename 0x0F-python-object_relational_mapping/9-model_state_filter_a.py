@@ -13,7 +13,7 @@ from model_state import Base, State
 if __name__ == "__main__":
     """This does not execute if imported"""
 
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}"
+    engine = create_engine("mysql://{}:{}@localhost:3306/{}"
                            .format(sysargv[1], sysargv[2], sysargv[3]))
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -22,5 +22,4 @@ if __name__ == "__main__":
                     .order_by(State.id)
     for state in states:
         print("{:d}: {:s}".format(state.id, state.name))
-    session.close()
     session.close()
