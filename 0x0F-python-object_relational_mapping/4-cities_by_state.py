@@ -6,7 +6,9 @@ module, connects to the database and then list out all the cities in the DB
 
     import MySQLdb
     from sys import argv as sysarg
- if __name__ == '__main__':
+ 
+
+if __name__ == '__main__':
    """Do not execute code when imported"""
 
     connector = MySQLdb.connect(host="localhost", port=3306, user=sysarg[1],
