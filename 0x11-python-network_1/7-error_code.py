@@ -4,7 +4,7 @@ This script takes a URL sends a request to the URL&displays the body of the
 response then displays the HTTP status code if greater than or equal 400
 """
 if __name__ == '__main__':
-    from sys import argv 
+    from sys import argv
     import requests
 
     url = argv[1]
