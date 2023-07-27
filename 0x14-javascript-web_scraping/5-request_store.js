@@ -9,7 +9,7 @@ request(URL, function (err, response, body) {
   if (err) {
     console.log(err);
   } else {
-    fs.createWriteStream(file, 'utf-8', function (error) {
+    fs.createWriteStream(file, body, 'utf-8', function (error) {
       if (error) {
         console.log(error);
       }
