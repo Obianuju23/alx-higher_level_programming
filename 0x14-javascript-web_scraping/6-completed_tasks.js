@@ -1,21 +1,20 @@
 #!/usr/bin/node
-
 const request = require('request');
-const URL = process.argv[2];
+const url = process.argv[2];
 
-request(URL, function (err, response, body) {
-  if (err) {
-    console.log(err);
-  } else if (response.statusCode === 200) {
-    const dict = {};
-    const tasks = JSON.parse(body);
-    tasks.forEach((task) => {
-      if (task.completed && dict[task.userId] === undefined) {
-        dict[task.userId] = 1;
-      } else if (task.completed) {
-        dict[task.userId]++;
+request(url, (err, resp, body) => {
+  if (!err) {
+    const data = JSON.parse(body);
+    const total = {};
+    data.forEach(todo => {
+      if (todo.completed && total[todo.userId] === undefined) {
+        total[todo.userId] = 1;
+      } else if (todo.completed) {
+        total[todo.userId] += 1;
       }
     });
-    console.log(dict);
+    console.log(total);
+  } else {
+    console.log(err);
   }
 });
