@@ -1,20 +1,21 @@
 #!/usr/bin/node
-const request = require('request');
-const url = process.argv[2];
 
-request(url, (err, resp, body) => {
-  if (!err) {
-    const data = JSON.parse(body);
-    const total = {};
-    data.forEach(todo => {
-      if (todo.completed && total[todo.userId] === undefined) {
-        total[todo.userId] = 1;
-      } else if (todo.completed) {
-        total[todo.userId] += 1;
+const url = process.argv[2];
+const request = require('request');
+
+request(url, function (err, response, body) {
+  if (err) {
+    console.log(err);
+  } else if (response.statusCode === 200) {
+    const dic = {};
+    const tasks = JSON.parse(body);
+    tasks.forEach((task) => {
+      if (task.completed && dic[task.userId] === undefined) {
+        dic[task.userId] = 1;
+      } else if (task.completed) {
+        dic[task.userId]++;
       }
     });
-    console.log(total);
-  } else {
-    console.log(err);
+    console.log(dic);
   }
 });
